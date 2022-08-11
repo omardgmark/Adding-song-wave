@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Sound Wave</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
     <div class="gan">
@@ -14,11 +15,21 @@
             <h1>Ghazal (Indian)</h1>
             <div class="track">
                 <img src="media/play.png">
-                <div></div>
+                <div id="waveform"></div>
 
             </div>
         </div>
     </div>
     
+<script>
+    var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'violet',
+    progressColor: 'purple'
+});
+
+wavesurfer.load('media/music.mp3')
+
+</script>    
 </body>
 </html>
