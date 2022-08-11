@@ -14,7 +14,7 @@
             <p>Artist: Shahed</p>
             <h1>Ghazal (Indian)</h1>
             <div class="track">
-                <img src="media/play.png">
+                <img src="media/play.png" id="playBtn">
                 <div id="waveform"></div>
 
             </div>
@@ -22,13 +22,35 @@
     </div>
     
 <script>
-    var wavesurfer = WaveSurfer.create({
+
+
+var playBtn = document.getElementById("playBtn");
+
+var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'violet',
-    progressColor: 'purple'
+    progressColor: 'purple',
+    barWidth: 4,
+    responsive: true,
+    height: 90,
+    barRadius: 4
 });
 
-wavesurfer.load('media/music.mp3')
+wavesurfer.load('media/music.mp3');
+
+playBtn.onclick = function(){
+    wavesurfer.playPause();
+    if(playBtn.src.includes("play.png")){
+        playBtn.src = "media/pause.png";
+    }
+    else{
+        playBtn.src = "media/play.png";
+    }
+}
+    wavesurfer.on('finish', function(){
+        playBtn.src = "media/play.png";
+        wavesurfer.stop();
+    })
 
 </script>    
 </body>
